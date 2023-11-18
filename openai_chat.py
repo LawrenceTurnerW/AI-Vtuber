@@ -6,7 +6,8 @@ client = OpenAI(api_key=key)
 
 class OpenAIChat:
 	def __init__(self):
-		self.system_prompt = "こんにちは"
+		with open("actor_setting.txt","r",encoding="utf-8") as f:
+			self.system_prompt = f.read()
 
 	def _create_text(self,role,text):
 		return {
@@ -31,5 +32,5 @@ class OpenAIChat:
 
 if __name__ == "__main__":
 	adapter = OpenAIChat()
-	response_text = adapter.create_chat("こんにちは")
+	response_text = adapter.create_chat("こんにちは!")
 	print(response_text)
